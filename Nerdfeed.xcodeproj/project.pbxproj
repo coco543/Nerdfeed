@@ -13,6 +13,9 @@
 		EDB6CB091C3A096C0025937D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EDB6CB071C3A096C0025937D /* LaunchScreen.storyboard */; };
 		EDB6CB141C3A096C0025937D /* NerdfeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB6CB131C3A096C0025937D /* NerdfeedTests.m */; };
 		EDB6CB1F1C3A096C0025937D /* NerdfeedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB6CB1E1C3A096C0025937D /* NerdfeedUITests.m */; };
+		EDB6CB2E1C3A0A4F0025937D /* BNRCoursesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB6CB2D1C3A0A4F0025937D /* BNRCoursesViewController.m */; };
+		EDB6CB301C3A0F1B0025937D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EDB6CB2F1C3A0F1B0025937D /* bg.png */; };
+		EDB6CB331C3A70490025937D /* BNRWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDB6CB321C3A70490025937D /* BNRWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,11 @@
 		EDB6CB1A1C3A096C0025937D /* NerdfeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NerdfeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB6CB1E1C3A096C0025937D /* NerdfeedUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NerdfeedUITests.m; sourceTree = "<group>"; };
 		EDB6CB201C3A096C0025937D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDB6CB2C1C3A0A4F0025937D /* BNRCoursesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCoursesViewController.h; sourceTree = "<group>"; };
+		EDB6CB2D1C3A0A4F0025937D /* BNRCoursesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCoursesViewController.m; sourceTree = "<group>"; };
+		EDB6CB2F1C3A0F1B0025937D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		EDB6CB311C3A70490025937D /* BNRWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRWebViewController.h; sourceTree = "<group>"; };
+		EDB6CB321C3A70490025937D /* BNRWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +106,14 @@
 			children = (
 				EDB6CB021C3A096C0025937D /* AppDelegate.h */,
 				EDB6CB031C3A096C0025937D /* AppDelegate.m */,
+				EDB6CB2C1C3A0A4F0025937D /* BNRCoursesViewController.h */,
+				EDB6CB2D1C3A0A4F0025937D /* BNRCoursesViewController.m */,
+				EDB6CB311C3A70490025937D /* BNRWebViewController.h */,
+				EDB6CB321C3A70490025937D /* BNRWebViewController.m */,
 				EDB6CB051C3A096C0025937D /* Assets.xcassets */,
 				EDB6CB071C3A096C0025937D /* LaunchScreen.storyboard */,
 				EDB6CB0A1C3A096C0025937D /* Info.plist */,
+				EDB6CB2F1C3A0F1B0025937D /* bg.png */,
 				EDB6CAFF1C3A096C0025937D /* Supporting Files */,
 			);
 			path = Nerdfeed;
@@ -240,6 +253,7 @@
 			files = (
 				EDB6CB061C3A096C0025937D /* Assets.xcassets in Resources */,
 				EDB6CB091C3A096C0025937D /* LaunchScreen.storyboard in Resources */,
+				EDB6CB301C3A0F1B0025937D /* bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,8 +278,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB6CB331C3A70490025937D /* BNRWebViewController.m in Sources */,
 				EDB6CB041C3A096C0025937D /* AppDelegate.m in Sources */,
 				EDB6CB011C3A096C0025937D /* main.m in Sources */,
+				EDB6CB2E1C3A0A4F0025937D /* BNRCoursesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "BNRCoursesViewController.h"
+#import "BNRWebViewController.h"
+
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
@@ -17,8 +19,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    BNRCoursesViewController *cvc = [[BNRCoursesViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:cvc];
+    
+    BNRWebViewController *wvc = [[BNRWebViewController alloc]init];
+    cvc.webViewController = wvc;
+    
+    self.window.rootViewController = masterNav;
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UIViewController alloc]init];
     [self.window makeKeyAndVisible];
     return YES;
 }
