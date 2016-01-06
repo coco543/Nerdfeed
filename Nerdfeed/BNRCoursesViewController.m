@@ -9,7 +9,7 @@
 #import "BNRCoursesViewController.h"
 #import "BNRWebViewController.h"
 
-@interface BNRCoursesViewController ()
+@interface BNRCoursesViewController () <NSURLSessionDataDelegate>
 @property (nonatomic,strong) NSURLSession *session;
 
 //保存在线课程
@@ -25,7 +25,7 @@
         self.navigationItem.title = @"BNR Courses";
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+        _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
         
         [self fetchFeed];
     }
@@ -50,6 +50,7 @@
 }
 
 - (void)fetchFeed{
+//    NSString *requestString = @"https://bookapi.bignerdranch.com/private/courses.json";
     NSString *requestString = @"http://bookapi.bignerdranch.com/courses.json";
     NSURL *url = [NSURL URLWithString:requestString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
@@ -61,7 +62,7 @@
         
         self.courses = jsonObject[@"courses"];
         
-        //由于块completionHandler不是在主线程中运行的,所以无法直接在block中调用tableView的reloadData方法(改方法要更新UI,UI涉及到主线程).
+        //由于块completionHandler不是在主线程中运行的,所以无法直接在block中调用tableView的reloadData方法(改方法要更新UI,UI涉及到主线程).   
         /*
          主线程和主队列都是多线程的一种方式,苹果有3中实现多线程的方式,1. NSThread 2.NSOperation/NSOperationQueue 3.GDC
          三种方式的抽象程度不同,越后面越容易使用,所以你可以理解为队列是对线程的一个包装,让用户更容易使用,所以队列的底层也是通过线程来实现的
@@ -71,12 +72,30 @@
             [self.tableView reloadData];
         });
         
-        NSLog(@"%@",self.courses);
+//        NSLog(@"%@",self.courses);
         
     }];
     
     [dataTask resume];
 }
+
+//完成服务器认证
+//- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
+//    
+//    NSLog(@"服务器要求认证信息!");
+//    NSLog(@"%@",completionHandler);
+//    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"BigNerdRanch" password:@"AchieveNerdvana" persistence:NSURLCredentialPersistenceForSession];
+//    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+//}
+//上面方法无法成功通过.需要用下面的才行
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
+    
+    NSLog(@"服务器要求认证信息 in task");
+    NSLog(@"%@",completionHandler);
+    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"BigNerdRanch" password:@"AchieveNerdvana" persistence:NSURLCredentialPersistenceForSession];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
+}
+
 #pragma mark - Table view data source
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
