@@ -102,4 +102,21 @@
     }
     return YES;
 }
+
+#pragma mark - 处理 UISplitViewController 代理
+//教程的方法已经过期了
+//- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
+//    
+//    //给按钮加一个标题不然显示不出来
+//    barButtonItem.title = @"Courses";
+//    self.navigationItem.leftBarButtonItem = barButtonItem;
+//}
+
+- (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
+
+    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+        self.navigationItem.leftBarButtonItem.title = @"Courses";
+    }
+}
 @end

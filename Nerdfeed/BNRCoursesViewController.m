@@ -38,7 +38,7 @@
     //注册cell对象
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     //禁止回弹
-    [self.tableView setBounces:NO];
+//    [self.tableView setBounces:NO];
     //设置背景图
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg.png"]];
     [self.tableView setBackgroundView:imgView];
@@ -123,7 +123,9 @@
     self.webViewController.title = course[@"title"];
     self.webViewController.URL = URL;
     
-    [self.navigationController pushViewController:self.webViewController animated:YES];
+    if (!self.splitViewController) {
+        [self.navigationController pushViewController:self.webViewController animated:YES];
+    }
 }
 
 /*

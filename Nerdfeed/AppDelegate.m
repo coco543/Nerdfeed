@@ -23,10 +23,30 @@
     BNRCoursesViewController *cvc = [[BNRCoursesViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:cvc];
     
+    //注意这里,webViewController的创建并不是在要圧入它的视图控制器(BNRCoursesViewController)里创建,而是直接在UINavigationController创建的地方创建,这是为了方便当使用UISplitViewController时,UISplitViewController可以直接获取到webViewController
     BNRWebViewController *wvc = [[BNRWebViewController alloc]init];
     cvc.webViewController = wvc;
     
-    self.window.rootViewController = masterNav;
+    //判断设备类型
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        //将webViewController包含在另一个NavigationController里
+        UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:wvc];
+        
+        UISplitViewController *svc = [[UISplitViewController alloc] init];
+        svc.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryOverlay;
+        //将"从视图"设置为SplitViewController的代理
+        svc.delegate = wvc;
+        svc.viewControllers = @[masterNav, detailNav];
+        wvc.detailNav = detailNav;
+        wvc.masterNav = masterNav;
+        wvc.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+        wvc.navigationItem.leftBarButtonItem.title = @"Courses";
+        NSLog(@"masterNav:%@ detailNav:%@",masterNav,detailNav);
+        self.window.rootViewController = svc;
+    }else{
+        self.window.rootViewController = masterNav;
+    }
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

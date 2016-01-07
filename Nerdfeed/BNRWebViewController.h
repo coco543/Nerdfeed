@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNRWebViewController : UIViewController
+@interface BNRWebViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic,strong) NSURL *URL;
+@property (nonatomic,weak) UINavigationController *masterNav;
+@property (nonatomic,weak) UINavigationController *detailNav;
 
 @end
